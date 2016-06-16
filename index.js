@@ -1,19 +1,36 @@
 "use strict"
 
+const assignToCopy = Object.assign.bind(null, {})
 const ngAnnotate = require("ng-annotate")
 
 module.exports = class {
   constructor(config) {
-    this.config = (config && config.plugins && config.plugins.ngAnnotate) || {add: true}
-    this.pattern = config.pattern || /\.js$/
+    this.config = defaults(config && config.plugins && config.plugins.ngAnnotate, {
+      add: true,
+      remove: true,
+      map: {},
+    })
+    this.pattern = this.config.pattern || /\.js$/
   }
 
   compile(file) {
-    const {src, map, errors} = ngAnnotate(file.data, this.config)
+    const options = withInFile(this.config, file.path)
+    const {src, map, errors} = ngAnnotate(file.data, options)
     if (errors) return Promise.reject(errors)
-    return Promise.resolve(Object.assign({}, file, {data: src, map}))
+    return Promise.resolve(assignToCopy(file, {data: src, map}))
   }
 
   get brunchPlugin() { return true }
   get type() { return "javascript" }
+}
+
+function defaults(options, defaults) {
+  return assignToCopy(defaults, options)
+}
+
+function withInFile(options, inFile) {
+  if (!options.map) return options
+  return assignToCopy(options, {
+    map: assignToCopy(options.map, {inFile})
+  })
 }
