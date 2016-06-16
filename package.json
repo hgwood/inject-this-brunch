@@ -1,13 +1,20 @@
 {
   "name": "inject-this-brunch",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "ng-annotate plugin for brunch",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hgwood/inject-this-brunch.git"
   },
-  "keywords": ["brunch", "angular", "ng-annotate", "annotate", "dependency", "injection"],
+  "keywords": [
+    "brunch",
+    "angular",
+    "ng-annotate",
+    "annotate",
+    "dependency",
+    "injection"
+  ],
   "author": "Hugo Wood <hx4.5@free.fr>",
   "license": "MIT",
   "bugs": {
