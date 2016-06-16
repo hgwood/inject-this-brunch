@@ -5,6 +5,7 @@
   },
   "extends": "eslint:recommended",
   "rules": {
+    "comma-dangle": ["warn", "always-multiline"],
     "semi": ["warn", "never"],
     "quotes": ["warn", "double", {"avoidEscape": true, "allowTemplateLiterals": true}]
   }
