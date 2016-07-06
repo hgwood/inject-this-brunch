@@ -8,7 +8,7 @@ module.exports = class {
     this.config = defaults(config && config.plugins && config.plugins.ngAnnotate, {
       add: true,
       remove: true,
-      map: {},
+      map: false,
     })
     this.pattern = this.config.pattern || /\.js$/
   }
