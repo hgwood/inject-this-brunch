@@ -15,7 +15,7 @@ module.exports = class {
 
   compile(file) {
     const options = withInFile(this.config, file.path)
-    const {src, map, errors} = ngAnnotate(file.data, options)
+    const {src, map = file.map, errors} = ngAnnotate(file.data, options)
     if (errors) return Promise.reject(errors)
     return Promise.resolve(assignToCopy(file, {data: src, map}))
   }
