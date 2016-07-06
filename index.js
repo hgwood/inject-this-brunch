@@ -1,6 +1,6 @@
 "use strict"
 
-const assignToCopy = Object.assign.bind(null, {})
+const assignToCopy = (...sources) => Object.assign(...sources)
 const ngAnnotate = require("ng-annotate")
 
 module.exports = class {
