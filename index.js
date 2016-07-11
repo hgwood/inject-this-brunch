@@ -3,7 +3,7 @@
 const assignToCopy = (...sources) => Object.assign(...sources)
 const ngAnnotate = require("ng-annotate")
 
-module.exports = class {
+module.exports = class ngAnnotateCompiler {
   constructor(config) {
     this.config = defaults(config && config.plugins && config.plugins.ngAnnotate, {
       add: true,
