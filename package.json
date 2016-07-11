@@ -1,6 +1,6 @@
 {
   "name": "inject-this-brunch",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "ng-annotate plugin for brunch",
   "main": "index.js",
   "repository": {
