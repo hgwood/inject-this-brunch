@@ -1,7 +1,8 @@
 "use strict"
 
-const assignToCopy = (...sources) => Object.assign(...sources)
+const anymatch = require("anymatch")
 const ngAnnotate = require("ng-annotate")
+const assignToCopy = (...sources) => Object.assign(...sources)
 
 module.exports = class ngAnnotateCompiler {
   constructor(config) {
@@ -11,9 +12,11 @@ module.exports = class ngAnnotateCompiler {
       map: false,
     })
     this.pattern = this.config.pattern || /\.js$/
+    this.isIgnored = anymatch(this.config.ignore || /^(bower_components|vendor)/)
   }
 
   compile(file) {
+    if (this.isIgnored(file.path)) return Promise.resolve(file)
     const options = withInFile(this.config, file.path)
     const {src, map = file.map, errors} = ngAnnotate(file.data, options)
     if (errors) return Promise.reject(errors)
