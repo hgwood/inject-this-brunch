@@ -19,7 +19,7 @@ module.exports = class ngAnnotateCompiler {
     const options = withInFile(this.config, file.path)
     const results = ngAnnotate(file.data, options)
     if (results.errors) return Promise.reject(results.errors)
-    return Promise.resolve(Object.assign(file, {data: results.src, map: file.map}))
+    return Promise.resolve(Object.assign({}, file, {data: results.src, map: file.map}))
   }
 
   get brunchPlugin() { return true }
@@ -27,12 +27,12 @@ module.exports = class ngAnnotateCompiler {
 }
 
 function defaults(options, defaults) {
-  return Object.assign(defaults, options)
+  return Object.assign({}, defaults, options)
 }
 
 function withInFile(options, inFile) {
   if (!options.map) return options
-  return Object.assign(options, {
-    map: Object.assign(options.map, {inFile})
+  return Object.assign({}, options, {
+    map: Object.assign({}, options.map, {inFile})
   })
 }
