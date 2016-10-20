@@ -33,6 +33,6 @@ function defaults(options, defaults) {
 function withInFile(options, inFile) {
   if (!options.map) return options
   return Object.assign({}, options, {
-    map: Object.assign({}, options.map, {inFile: inFile})
+    map: Object.assign({}, options.map, {inFile})
   })
 }
