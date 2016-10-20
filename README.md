@@ -37,3 +37,7 @@ When a configuration is provided in `brunch-config.js`:
 #### `pattern`
 
 Default: `/\.js$/`
+
+#### `ignore`
+
+Default: `/^(bower_components|vendor)/`
