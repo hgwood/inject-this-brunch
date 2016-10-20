@@ -2,7 +2,6 @@
 
 const anymatch = require("anymatch")
 const ngAnnotate = require("ng-annotate")
-const assignToCopy = (...sources) => Object.assign(...sources)
 
 module.exports = class ngAnnotateCompiler {
   constructor(config) {
@@ -18,9 +17,9 @@ module.exports = class ngAnnotateCompiler {
   compile(file) {
     if (this.isIgnored(file.path)) return Promise.resolve(file)
     const options = withInFile(this.config, file.path)
-    const {src, map = file.map, errors} = ngAnnotate(file.data, options)
-    if (errors) return Promise.reject(errors)
-    return Promise.resolve(assignToCopy(file, {data: src, map}))
+    const results = ngAnnotate(file.data, options)
+    if (results.errors) return Promise.reject(results.errors)
+    return Promise.resolve(Object.assign(file, {data: results.src, map: file.map}))
   }
 
   get brunchPlugin() { return true }
@@ -28,12 +27,12 @@ module.exports = class ngAnnotateCompiler {
 }
 
 function defaults(options, defaults) {
-  return assignToCopy(defaults, options)
+  return Object.assign(defaults, options)
 }
 
 function withInFile(options, inFile) {
   if (!options.map) return options
-  return assignToCopy(options, {
-    map: assignToCopy(options.map, {inFile})
+  return Object.assign(options, {
+    map: Object.assign(options.map, {inFile})
   })
 }
