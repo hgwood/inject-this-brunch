@@ -2,6 +2,8 @@
 
 A [ng-annotate](https://www.npmjs.com/package/ng-annotate) plugin for [brunch](http://brunch.io/).
 
+**DEPRECATED**: [ng-annotate](https://github.com/olov/ng-annotate), which this project depends on, is now [deprecated](https://github.com/olov/ng-annotate/issues/245). You are [advised](https://github.com/olov/ng-annotate/issues/245#issuecomment-247245655) to use [babel-plugin-angularjs-annotate](https://github.com/schmod/babel-plugin-angularjs-annotate) instead.
+
 ## Why not the other existing things?
 
 Two ng-annotate plugins for brunch already exist: [ng-annotate-brunch](https://www.npmjs.com/package/ng-annotate-brunch)
